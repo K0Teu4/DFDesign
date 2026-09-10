@@ -1,164 +1,340 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dmiriy Design — дизайн, который решает задачи</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dmitry Design — Дизайн, который решает задачи</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arsenal:wght@400;700&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header class="header" id="header">
-  <div class="header__inner">
-    <a class="logo" href="#about" aria-label="Dmiriy Design">
-      <svg width="53" height="40" viewBox="0 0 53 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.43568 40C1.79094 40 1.22979 39.8446 0.7522 39.5338C0.250733 39.223 2.98192e-06 38.7091 0 37.9919C0 37.8007 0.119381 37.2031 0.358171 36.1991C0.596962 35.2189 0.907395 34.0237 1.28946 32.6133C1.64765 31.2028 2.05369 29.6847 2.5074 28.0591C2.93723 26.4575 3.35505 24.9156 3.761 23.4334C4.16695 21.9752 4.52508 20.6843 4.83551 19.5607C5.14595 18.4371 5.34897 17.6841 5.44448 17.3016L13.3964 11.2056H37.6819L31.5255 19.0229L30.039 20.9771H37.7411L39.4961 19.6504L42.6483 7.81706L13.5416 8.20092L23.055 0H50.5643C51.2091 3.74578e-06 51.7702 0.155451 52.2478 0.46622C52.7492 0.776994 53 1.29091 53 2.00806C53 2.1993 52.8806 2.79694 52.6418 3.80095C52.403 4.78106 52.0926 5.97634 51.7105 7.38673C51.3523 8.79716 50.9463 10.3153 50.4926 11.9409C50.0628 13.5425 49.6449 15.0844 49.239 16.5666C48.833 18.0248 48.4749 19.3157 48.1645 20.4393C47.8541 21.5629 47.651 22.3159 47.5555 22.6984L39.6036 28.7944H15.3181L21.4745 20.9771L22.961 19.0229H15.2589L13.5039 20.3496L10.3517 32.1829H37.6819L42.2134 40H2.43568Z" fill="#B8FF3C"/></svg>
-    </a>
-    <nav class="nav" id="nav">
-      <a href="#about">Обо мне</a>
-      <a href="#works">Работы</a>
-      <a href="#services">Подход</a>
-      <a href="#process">Как я работаю</a>
-      <a href="#contact">Контакты</a>
-      <a class="btn btn--ghost" href="#contact">Оставить заявку
-        <svg class="arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 11V1H1" stroke="currentColor" stroke-width="1.5"/></svg>
-      </a>
-    </nav>
-    <button class="burger" id="burger" aria-expanded="false" aria-label="Открыть меню"><span></span><span></span><span></span></button>
-  </div>
-</header>
-
-<main>
-<!-- Section 1 -->
+<!-- ===================== SECTION 1: HERO ===================== -->
 <section class="hero" id="about">
-  <div class="hero__content">
-    <div class="hero__top">
-      <h1 class="hero__title">ДИЗАЙН,
-        <span class="hero__line">КОТОРЫЙ</span>
-        <span class="hero__line">РЕШАЕТ ЗАДАЧИ</span>
-      </h1>
-      <p class="hero__text">Я Дмитрий — дизайнер, который помогает брендам и специалистам создавать сильный визуальный образ и выделяться среди конкурентов.</p>
+    <header class="header">
+        <div class="header__inner">
+            <a href="#" class="logo">
+                <svg width="53" height="40" viewBox="0 0 53 40" fill="none">
+                    <path d="M0 0H53L26.5 40L0 0Z" fill="#B8FF3C"/>
+                    <path d="M13 12H40L26.5 30L13 12Z" fill="#111111"/>
+                </svg>
+            </a>
+
+            <nav class="nav">
+                <a href="#about">Обо мне</a>
+                <a href="#portfolio">Работы</a>
+                <a href="#process">Подход</a>
+                <a href="#process">Как я работаю</a>
+                <a href="#contacts">Контакты</a>
+                <a href="#form" class="nav__cta">
+                    Оставить заявку
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                        <path d="M2 10L10 2M10 2H4M10 2V8" stroke="#F5F4F0" stroke-width="1.5"/>
+                    </svg>
+                </a>
+            </nav>
+
+            <button class="burger" aria-label="Меню">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="hero__block">
+        <div class="hero__content">
+            <div class="hero__text">
+                <div class="hero__headings">
+                    <h1 class="hero__title">ДИЗАЙН,</h1>
+                    <h2 class="hero__subtitle">КОТОРЫЙ</h2>
+                    <h2 class="hero__subtitle">РЕШАЕТ ЗАДАЧИ</h2>
+                </div>
+                <p class="hero__desc">
+                    Я Дмитрий — дизайнер, который помогает брендам
+                    и специалистам создавать сильный визуальный образ и
+                    выделяться среди конкурентов.
+                </p>
+            </div>
+            <a href="#form" class="btn btn--green">
+                <span>Заказать дизайн</span>
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M2 10L10 2M10 2H4M10 2V8" stroke="#111111" stroke-width="1.5"/>
+                </svg>
+            </a>
+        </div>
+
+        <!-- ✅ оригинальное имя картинки -->
+        <div class="hero__image"
+             style="background-image:
+                linear-gradient(360deg, #111111 0%, rgba(17, 17, 17, 0) 23.75%),
+                linear-gradient(89.15deg, #111111 0.67%, rgba(17, 17, 17, 0) 52.53%),
+                url('personal_brand_portrait.png');">
+        </div>
     </div>
-    <a class="btn btn--lime hero__btn" href="#contact">Заказать дизайн
-      <svg class="arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 11V1H1" stroke="currentColor" stroke-width="1.5"/></svg>
-    </a>
-  </div>
-  <div class="hero__img" role="img" aria-label="Дмитрий — дизайнер"></div>
 </section>
 
-<!-- Section 2 -->
-<section class="services" id="services">
-  <h2 class="h2">Что я делаю ?</h2>
-  <div class="services__cards">
-    <article class="service-card" style="--img:url('img/service-1.jpg')"><h3>Современный дизайн</h3><p>Создаём визуальное решение, которое помогает бренду отличаться и запоминаться</p></article>
-    <article class="service-card" style="--img:url('img/service-2.jpg')"><h3>Индивидуальный подход</h3><p>Создаём визуальное решение, которое помогает бренду отличаться и запоминаться</p></article>
-    <article class="service-card" style="--img:url('img/service-3.jpg')"><h3>Гарантия прозрачности</h3><p>Создаём визуальное решение, которое помогает бренду отличаться и запоминаться</p></article>
-    <article class="service-card" style="--img:url('img/service-4.jpg')"><h3>Точная реализация</h3><p>Создаём визуальное решение, которое помогает бренду отличаться и запоминаться</p></article>
-  </div>
-  <span class="star star--big" style="right:48px;top:130px"></span>
-  <span class="star star--sm" style="right:54px;top:202px"></span>
-  <span class="star star--sm" style="right:79px;top:181px"></span>
-</section>
+<!-- ===================== SECTION 2: ЧТО Я ДЕЛАЮ ===================== -->
+<section class="section section--services">
+    <div class="container">
+        <h2 class="section__title">Что я делаю ?</h2>
 
-<!-- Section 3 -->
-<section class="works" id="works">
-  <h2 class="h2">Портфолио</h2>
-  <div class="works__grid">
-    <article class="work-card work-card--1" style="--img:url('img/work-1.jpg')">
-      <div class="work-card__body"><div><h3>Веб-дизайн</h3><p>Лендинги и интерфейсы</p></div>
-        <span class="work-card__btn"><svg class="arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 11V1H1" stroke="currentColor" stroke-width="1.5"/></svg></span></div>
-    </article>
-    <article class="work-card work-card--2" style="--img:url('img/work-2.jpg')">
-      <div class="work-card__body"><div><h3>Дизайн для соц. сетей</h3><p>Визуальная система для контента</p></div>
-        <span class="work-card__btn"><svg class="arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 11V1H1" stroke="currentColor" stroke-width="1.5"/></svg></span></div>
-    </article>
-    <article class="work-card work-card--3" style="--img:url('img/work-3.jpg')">
-      <div class="work-card__body"><div><h3>Брендинг</h3><p>Логотипы и айдентика</p></div>
-        <span class="work-card__btn"><svg class="arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 11V1H1" stroke="currentColor" stroke-width="1.5"/></svg></span></div>
-    </article>
-    <span class="star star--big" style="left:912px;top:295px"></span>
-    <span class="star star--big" style="left:98px;top:75px"></span>
-    <span class="star" style="left:456px;top:525px;width:55px;height:55px"></span>
-    <span class="star star--sm" style="left:172px;top:193px"></span>
-    <span class="star star--sm" style="left:1071px;top:383px"></span>
-    <span class="star star--sm" style="left:290px;top:8px"></span>
-  </div>
-</section>
-
-<!-- Section 4 -->
-<section class="process" id="process">
-  <div class="process__head">
-    <h2 class="h2">Этапы и процесс работы</h2>
-    <a class="btn btn--ghost" href="#contact">Оставить заявку
-      <svg class="arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 11V1H1" stroke="currentColor" stroke-width="1.5"/></svg>
-    </a>
-  </div>
-  <div class="process__cards">
-    <article class="step-card"><span class="step-card__num">01</span><h3>Знакомство</h3><p>Обсуждаем задачу, цели проекта, пожелания и ожидаемый результат</p></article>
-    <article class="step-card"><span class="step-card__num">02</span><h3>Анализ</h3><p>Изучаю аудиторию, конкурентов и особенности проекта</p></article>
-    <article class="step-card"><span class="step-card__num">03</span><h3>Концепция</h3><p>Формирую визуальное направление и предлагаю решение</p></article>
-    <article class="step-card"><span class="step-card__num">04</span><h3>Дизайн</h3><p>Разрабатываю выбранную концепцию и необходимые материалы</p></article>
-    <article class="step-card"><span class="step-card__num">05</span><h3>Доработка</h3><p>Обсуждаем результат и вносим необходимые корректировки</p></article>
-    <article class="step-card"><span class="step-card__num">06</span><h3>Результат</h3><p>Передаю готовые материалы и необходимые файлы для дальнейшего использования</p></article>
-  </div>
-</section>
-
-<!-- Section 5 -->
-<section class="faq" id="faq">
-  <div class="faq__left">
-    <h2 class="h2">Часто<br>задаваемые<br>вопросы</h2>
-    <span class="star star--big" style="left:184px;top:186px"></span>
-  </div>
-  <div class="faq__right">
-    <div class="faq__list">
-      <div class="faq__item"><button class="faq__q" aria-expanded="false"><span class="faq__plus">+</span><span>Сколько стоит UI/UX-дизайн?</span></button><div class="faq__a"><p>Стоимость зависит от объёма: лендинг — от 40 000 ₽, комплексный UI/UX-проект — от 80 000 ₽. Точную смету присылаю после брифа.</p></div></div>
-      <div class="faq__item"><button class="faq__q" aria-expanded="false"><span class="faq__plus">+</span><span>Сколько времени занимает разработка дизайна?</span></button><div class="faq__a"><p>Лендинг — 2–3 недели, комплексный проект — 4–6 недель с учётом правок.</p></div></div>
-      <div class="faq__item"><button class="faq__q" aria-expanded="false"><span class="faq__plus">+</span><span>Можно ли заказать только часть проекта?</span></button><div class="faq__a"><p>Да: логотип, лендинг, оформление соцсетей или редизайн — любым отдельным этапом.</p></div></div>
-      <div class="faq__item"><button class="faq__q" aria-expanded="false"><span class="faq__plus">+</span><span>Как проходит начало работы?</span></button><div class="faq__a"><p>После брифа и предоплаты приступаю к анализу, затем показываю концепцию и макеты.</p></div></div>
-      <div class="faq__item"><button class="faq__q" aria-expanded="false"><span class="faq__plus">+</span><span>Работаете ли вы с правками?</span></button><div class="faq__a"><p>Да, в стоимость входят две итерации правок, дополнительные — по согласованию.</p></div></div>
+        <div class="services">
+            <!-- ✅ оригинальные имена картинок -->
+            <div class="service-card" style="background-image: linear-gradient(0deg, rgba(17,17,17,0.2), rgba(17,17,17,0.2)), url('old-couturier-checking-fashion-sketches-atelier-working-modern-designs-with-laptop-tablet-experienced-designer-searching-handmade-models-online-needlework-handheld-shot (1).jpg');">
+                <div class="service-card__label">Брендинг</div>
+            </div>
+            <div class="service-card" style="background-image: linear-gradient(0deg, rgba(17,17,17,0.2), rgba(17,17,17,0.2)), url('still-life-business-roles-with-various-pawns.jpg');">
+                <div class="service-card__label">Стратегия</div>
+            </div>
+            <div class="service-card" style="background-image: linear-gradient(0deg, rgba(17,17,17,0.2), rgba(17,17,17,0.2)), url('businessman-working-laptop.jpg');">
+                <div class="service-card__label">UI/UX</div>
+            </div>
+            <div class="service-card" style="background-image: linear-gradient(0deg, rgba(17,17,17,0.2), rgba(17,17,17,0.2)), url('stone-figures-embedded-blank-paper.jpg');">
+                <div class="service-card__label">Айдентика</div>
+            </div>
+        </div>
     </div>
-  </div>
+
+    <svg class="star star--services-1" viewBox="0 0 64 64" fill="none">
+        <path d="M32 4V60M4 32H60" stroke="rgba(184,255,60,0.4)" stroke-width="6"/>
+    </svg>
+    <svg class="star star--services-2" viewBox="0 0 13 13" fill="none">
+        <path d="M6.5 0V13M0 6.5H13" stroke="rgba(184,255,60,0.4)" stroke-width="0.7"/>
+    </svg>
 </section>
 
-<!-- Section 6 -->
-<section class="contact" id="contact">
-  <div class="contact__form-block">
-    <h2 class="h2">Оставьте заявку</h2>
-    <form id="form" class="form" novalidate>
-      <div class="form__fields">
-        <label class="field"><input type="text" name="name" placeholder="Ваше имя" required></label>
-        <label class="field"><input type="tel" name="phone" placeholder="Номер телефона" required></label>
-        <label class="field field--area"><textarea name="brief" placeholder="Кратко о проекте"></textarea></label>
-      </div>
-      <label class="form__agree"><input type="checkbox" name="agree" required><span>Нажимая кнопку, я даю согласие на обработку персональных данных</span></label>
-      <button class="btn btn--lime form__btn" type="submit">Заказать дизайн
-        <svg class="arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 11V1H1" stroke="currentColor" stroke-width="1.5"/></svg>
-      </button>
-      <p class="form__status" id="form-status" role="status"></p>
-    </form>
-  </div>
-  <div class="contact__img"></div>
+<!-- ===================== SECTION 3: ПОРТФОЛИО ===================== -->
+<section class="section section--portfolio" id="portfolio">
+    <div class="container">
+        <h2 class="section__title">Портфолио</h2>
+
+        <div class="portfolio">
+            <!-- ✅ оригинальные имена картинок -->
+            <div class="portfolio__card portfolio__card--left"
+                 style="background-image: linear-gradient(0deg, rgba(17,17,17,0.6), rgba(17,17,17,0.6)), url('business-branding-label-chart-graphic');">
+            </div>
+
+            <div class="portfolio__card portfolio__card--center"
+                 style="background-image: linear-gradient(0deg, rgba(17,17,17,0.2), rgba(17,17,17,0.2)), url('small-business-manager-his-workshop');">
+            </div>
+
+            <div class="portfolio__card portfolio__card--right"
+                 style="background-image: linear-gradient(0deg, rgba(17,17,17,0.2), rgba(17,17,17,0.2)), url('smartphone-device-tech-with-nature-scene-generative-ai');">
+            </div>
+
+            <svg class="star star--p1" viewBox="0 0 118 118" fill="none">
+                <path d="M59 4V114M4 59H114" stroke="rgba(184,255,60,0.4)" stroke-width="9.7"/>
+                <path d="M20 20L98 98M98 20L20 98" stroke="rgba(184,255,60,0.4)" stroke-width="9.7"/>
+            </svg>
+            <svg class="star star--p2" viewBox="0 0 118 118" fill="none">
+                <path d="M59 4V114M4 59H114" stroke="rgba(184,255,60,0.4)" stroke-width="9.7"/>
+                <path d="M20 20L98 98M98 20L20 98" stroke="rgba(184,255,60,0.4)" stroke-width="9.7"/>
+            </svg>
+            <svg class="star star--p3" viewBox="0 0 55 55" fill="none">
+                <path d="M27.5 2V53M2 27.5H53" stroke="rgba(184,255,60,0.4)" stroke-width="9.7"/>
+                <path d="M9 9L46 46M46 9L9 46" stroke="rgba(184,255,60,0.4)" stroke-width="9.7"/>
+            </svg>
+            <svg class="star star--p4" viewBox="0 0 13 13" fill="none">
+                <path d="M6.5 0V13M0 6.5H13" stroke="rgba(184,255,60,0.4)" stroke-width="0.7"/>
+            </svg>
+            <svg class="star star--p5" viewBox="0 0 13 13" fill="none">
+                <path d="M6.5 0V13M0 6.5H13" stroke="rgba(184,255,60,0.4)" stroke-width="0.7"/>
+            </svg>
+            <svg class="star star--p6" viewBox="0 0 13 13" fill="none">
+                <path d="M6.5 0V13M0 6.5H13" stroke="rgba(184,255,60,0.4)" stroke-width="0.7"/>
+            </svg>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== SECTION 4: ЭТАПЫ ===================== -->
+<section class="section section--process" id="process">
+    <div class="container">
+        <div class="process__head">
+            <h2 class="section__title">Этапы и процесс работы</h2>
+            <a href="#form" class="link-arrow">
+                Оставить заявку
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M2 10L10 2M10 2H4M10 2V8" stroke="#F5F4F0" stroke-width="1.5"/>
+                </svg>
+            </a>
+        </div>
+
+        <div class="process">
+            <div class="process-card">
+                <div class="process-card__label">Знакомство</div>
+                <div class="process-card__num">01</div>
+                <p class="process-card__desc">Обсуждаем задачу, цели проекта, пожелания и ожидаемый результат</p>
+            </div>
+            <div class="process-card">
+                <div class="process-card__label">Анализ</div>
+                <div class="process-card__num">02</div>
+                <p class="process-card__desc">Изучаю аудиторию, конкурентов и особенности проекта</p>
+            </div>
+            <div class="process-card">
+                <div class="process-card__label">Концепция</div>
+                <div class="process-card__num">03</div>
+                <p class="process-card__desc">Формирую визуальное направление и предлагаю решения</p>
+            </div>
+            <div class="process-card">
+                <div class="process-card__label">Дизайн</div>
+                <div class="process-card__num">04</div>
+                <p class="process-card__desc">Разрабатываю выбранную концепцию и необходимые материалы</p>
+            </div>
+            <div class="process-card">
+                <div class="process-card__label">Доработка</div>
+                <div class="process-card__num">05</div>
+                <p class="process-card__desc">Обсуждаем результат и вносим необходимые корректировки</p>
+            </div>
+            <div class="process-card">
+                <div class="process-card__label">Результат</div>
+                <div class="process-card__num">06</div>
+                <p class="process-card__desc">Передаю готовые материалы и рекомендации для дальнейшего использования</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== SECTION 5: FAQ ===================== -->
+<section class="faq">
+    <div class="faq__left">
+        <h2 class="faq__title">
+            Часто<br>задаваемые<br>вопросы
+        </h2>
+        <svg class="star star--faq" viewBox="0 0 64 64" fill="none">
+            <path d="M32 4V60M4 32H60" stroke="rgba(184,255,60,0.4)" stroke-width="6"/>
+        </svg>
+    </div>
+
+    <div class="faq__right">
+        <div class="faq__item">
+            <button class="faq__question" type="button">
+                <span class="faq__plus">+</span>
+                <span class="faq__text">Сколько стоит UI/UX дизайн?</span>
+            </button>
+            <div class="faq__answer">
+                <p>Стоимость зависит от объёма проекта, количества экранов и сложности задач. Свяжитесь со мной — рассчитаю индивидуально.</p>
+            </div>
+        </div>
+        <div class="faq__item">
+            <button class="faq__question" type="button">
+                <span class="faq__plus">+</span>
+                <span class="faq__text">Сколько времени занимает разработка дизайна?</span>
+            </button>
+            <div class="faq__answer">
+                <p>Обычно от 1 до 4 недель в зависимости от масштаба проекта.</p>
+            </div>
+        </div>
+        <div class="faq__item">
+            <button class="faq__question" type="button">
+                <span class="faq__plus">+</span>
+                <span class="faq__text">Можно ли заказать только часть проекта?</span>
+            </button>
+            <div class="faq__answer">
+                <p>Да, можно. Работаю как с полным циклом, так и с отдельными этапами.</p>
+            </div>
+        </div>
+        <div class="faq__item">
+            <button class="faq__question" type="button">
+                <span class="faq__plus">+</span>
+                <span class="faq__text">Как проходит начало работы?</span>
+            </button>
+            <div class="faq__answer">
+                <p>Вы оставляете заявку, мы созваниваемся, обсуждаем задачу и согласовываем сроки.</p>
+            </div>
+        </div>
+        <div class="faq__item">
+            <button class="faq__question" type="button">
+                <span class="faq__plus">+</span>
+                <span class="faq__text">Работаете ли вы с правками?</span>
+            </button>
+            <div class="faq__answer">
+                <p>Да, в стоимость входит 2-3 раунда правок.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== SECTION 6: ФОРМА ===================== -->
+<section class="contact" id="form">
+    <div class="contact__form-block">
+        <h2 class="contact__title">Оставьте заявку</h2>
+
+        <form class="form" id="contactForm">
+            <div class="form__field">
+                <input type="text" name="name" placeholder="Ваше имя" required>
+            </div>
+            <div class="form__field">
+                <input type="tel" name="phone" placeholder="Номер телефона" required>
+            </div>
+            <div class="form__field form__field--last">
+                <input type="text" name="project" placeholder="Кратко о проекте">
+            </div>
+
+            <label class="checkbox">
+                <input type="checkbox" required>
+                <span class="checkbox__box"></span>
+                <span class="checkbox__text">Нажимая кнопку, я даю согласие на обработку персональных данных</span>
+            </label>
+
+            <button type="submit" class="btn btn--green btn--full">
+                <span>Заказать дизайн</span>
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M2 10L10 2M10 2H4M10 2V8" stroke="#111111" stroke-width="1.5"/>
+                </svg>
+            </button>
+        </form>
+    </div>
+
+    <!-- ✅ оригинальное имя картинки -->
+    <div class="contact__image"
+         style="background-image: url('drawing-sketching-classes-adults-close-up-metal-stand-holder-with-graphite-pencils-standing-table-against-easels-with-blank-canvases-background-modern-art-studio-nobody');">
+    </div>
 </section>
 </main>
 
-<!-- Section 7 -->
-<footer class="footer" id="footer">
-  <nav class="footer__menu">
-    <a href="#about">Обо мне</a><a href="#works">Работы</a><a href="#services">Подход</a><a href="#process">Как я работаю</a><a href="#contact">Контакты</a>
-  </nav>
-  <div class="footer__bottom">
-    <hr class="footer__line">
-    <div class="footer__row">
-      <p class="footer__copy">© <span id="year">2026</span> Dmiriy Design. All rights reserved.</p>
-      <div class="footer__socials">
-        <a href="#" aria-label="Telegram"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M22 3.6 2.4 11.2c-.9.35-.86 1.63.06 1.92l4.9 1.55 1.87 5.6c.3.9 1.44 1.1 2.05.4l2.6-2.6 4.86 3.6c.75.55 1.83.13 2.02-.78L23.9 4.8c.2-1-.75-1.6-1.9-1.2Z" fill="currentColor"/></svg></a>
-        <a href="#" aria-label="Pinterest"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.6 19.3c-.1-.8-.2-2 .04-2.9l1.2-5s-.3-.6-.3-1.5c0-1.4.8-2.4 1.8-2.4.9 0 1.3.65 1.3 1.4 0 .9-.6 2.2-.9 3.4-.25 1 .55 1.85 1.55 1.85 1.85 0 3.1-1.95 3.1-4.75 0-2.5-1.8-4.2-4.35-4.2-2.95 0-4.7 2.2-4.7 4.5 0 .9.35 1.85.8 2.4l-.35 1.35c-.1.4-.35.5-.7.3-1.3-.6-2.1-2.5-2.1-4 0-3.3 2.4-6.3 6.9-6.3 3.6 0 6.4 2.6 6.4 6 0 3.6-2.25 6.5-5.4 6.5-1.05 0-2.05-.55-2.4-1.2l-.65 2.5c-.24.9-.9 2-1.35 2.7A10 10 0 1 0 12 2Z" fill="currentColor"/></svg></a>
-        <a href="#" aria-label="VK"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M12.8 17.5c-6.4 0-10-4.4-10.2-11.7h3.2c.1 5.4 2.5 7.7 4.4 8.2V5.8h3v4.9c1.9-.2 3.9-2.4 4.6-4.9h3c-.5 2.9-2.6 5.1-4 6 1.4.7 3.7 2.9 4.6 6.7h-3.3c-.7-2.4-2.6-4.3-5-4.6v4.6h-.7Z" fill="currentColor"/></svg></a>
-      </div>
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer" id="contacts">
+    <div class="footer__inner">
+        <nav class="footer__menu">
+            <a href="#about">Обо мне</a>
+            <a href="#portfolio">Работы</a>
+            <a href="#process">Подход</a>
+            <a href="#process">Как я работаю</a>
+            <a href="#contacts">Контакты</a>
+        </nav>
+
+        <div class="footer__line"></div>
+
+        <div class="footer__bottom">
+            <p class="footer__copy">© 2026 Dmitry Design. All rights reserved.</p>
+
+            <!-- ✅ Реальные иконки и ссылки на соцсети -->
+            <div class="footer__socials">
+                <!-- Telegram -->
+                <a href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                        <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
+                    </svg>
+                </a>
+
+                <!-- Pinterest -->
+                <a href="https://ru.pinterest.com/" target="_blank" rel="noopener" aria-label="Pinterest">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.64 7.86 6.36 9.32-.09-.79-.17-2.01.03-2.87.18-.78 1.18-4.99 1.18-4.99s-.3-.6-.3-1.5c0-1.4.81-2.45 1.83-2.45.86 0 1.28.65 1.28 1.42 0 .87-.55 2.16-.84 3.36-.24 1.01.5 1.83 1.5 1.83 1.8 0 3.18-1.9 3.18-4.63 0-2.42-1.74-4.11-4.22-4.11-2.88 0-4.57 2.16-4.57 4.39 0 .87.33 1.8.75 2.31.08.1.09.19.07.29l-.28 1.13c-.04.18-.15.22-.34.13-1.25-.58-2.03-2.41-2.03-3.88 0-3.16 2.3-6.06 6.62-6.06 3.48 0 6.18 2.48 6.18 5.79 0 3.45-2.18 6.23-5.2 6.23-1.02 0-1.97-.53-2.3-1.15l-.62 2.38c-.23.87-.84 1.96-1.25 2.62.94.29 1.94.45 2.98.45 5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
+                    </svg>
+                </a>
+
+                <!-- VK -->
+                <a href="https://vk.com/" target="_blank" rel="noopener" aria-label="VK">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                        <path d="M13.162 18.994c.609 0 .858-.406.851-.915-.031-1.917.714-2.949 2.059-1.604 1.488 1.488 1.796 2.519 3.603 2.519h3.2c.808 0 1.126-.26 1.126-.668 0-.863-1.421-2.386-2.625-3.504-1.686-1.565-1.765-1.602-.313-3.486 1.801-2.339 4.157-5.336 2.073-5.336h-3.981c-.772 0-.828.435-1.103 1.083-.995 2.347-2.886 5.387-3.604 4.922-.751-.485-.407-2.406-.35-5.261.015-.754.011-1.271-1.141-1.539-.629-.145-1.241-.205-1.809-.205-2.273 0-3.841.953-2.95 1.119 1.571.293 1.42 3.692 1.054 5.16-.638 2.556-3.036-2.024-4.035-4.305-.241-.548-.315-.974-1.175-.974H2.308c-.782 0-.948.418-.948.759 0 .62.891 3.192 3.5 5.989 2.986 3.203 7.286 3.512 8.302 3.512z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
     </div>
-  </div>
 </footer>
 
 <script src="script.js" defer></script>

@@ -1,61 +1,94 @@
-/* ========== Мобильное меню ========== */
-const header = document.getElementById('header');
-const burger = document.getElementById('burger');
-const nav = document.getElementById('nav');
+document.addEventListener('DOMContentLoaded', function () {
 
-burger.addEventListener('click', () => {
-  const open = header.classList.toggle('header--open');
-  document.body.classList.toggle('nav-locked', open);
-  burger.setAttribute('aria-expanded', String(open));
-  burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+    /* ================== FAQ ACCORDION ================== */
+    const faqItems = document.querySelectorAll('.faq__item');
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq__question');
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+
+            // Закрываем все
+            faqItems.forEach(i => i.classList.remove('active'));
+
+            // Открываем текущий, если был закрыт
+            if (!isActive) item.classList.add('active');
+        });
+    });
+
+    /* ================== BURGER MENU ================== */
+    const burger = document.querySelector('.burger');
+    const nav = document.querySelector('.nav');
+
+    if (burger && nav) {
+        burger.addEventListener('click', () => {
+            nav.classList.toggle('nav--open');
+            burger.classList.toggle('burger--open');
+        });
+
+        // Закрываем при клике на ссылку
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('nav--open');
+                burger.classList.remove('burger--open');
+            });
+        });
+    }
+
+    /* ================== FORM VALIDATION ================== */
+    const form = document.getElementById('contactForm');
+
+    if (form) {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const name = form.name.value.trim();
+            const phone = form.phone.value.trim();
+            const checkbox = form.querySelector('input[type="checkbox"]');
+
+            // Простая валидация
+            if (name.length < 2) {
+                alert('Пожалуйста, введите имя');
+                return;
+            }
+
+            const phonePattern = /^[\d\s\+\-\(\)]{7,}$/;
+            if (!phonePattern.test(phone)) {
+                alert('Пожалуйста, введите корректный номер телефона');
+                return;
+            }
+
+            if (!checkbox.checked) {
+                alert('Необходимо согласие на обработку персональных данных');
+                return;
+            }
+
+            // Здесь можно отправить данные на сервер
+            console.log('Form submitted:', {
+                name,
+                phone,
+                project: form.project.value.trim()
+            });
+
+            alert('Спасибо! Ваша заявка отправлена.');
+            form.reset();
+        });
+    }
+
+    /* ================== SMOOTH ANCHORS ================== */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            if (targetId.length < 2) return;
+
+            const target = document.querySelector(targetId);
+            if (target) {
+                e.preventDefault();
+                const offset = 20;
+                const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                window.scrollTo({ top, behavior: 'smooth' });
+            }
+        });
+    });
+
 });
-
-nav.querySelectorAll('a').forEach((link) => {
-  link.addEventListener('click', () => {
-    header.classList.remove('header--open');
-    document.body.classList.remove('nav-locked');
-    burger.setAttribute('aria-expanded', 'false');
-  });
-});
-
-/* ========== Аккордеон FAQ ========== */
-document.querySelectorAll('.faq__item').forEach((item) => {
-  const btn = item.querySelector('.faq__q');
-  const answer = item.querySelector('.faq__a');
-
-  btn.addEventListener('click', () => {
-    const isOpen = item.classList.toggle('open');
-    btn.setAttribute('aria-expanded', String(isOpen));
-    answer.style.maxHeight = isOpen ? `${answer.scrollHeight}px` : null;
-  });
-});
-
-/* ========== Форма заявки ========== */
-const form = document.getElementById('form');
-const status = document.getElementById('form-status');
-
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
-
-  const data = new FormData(form);
-  const name = String(data.get('name') || '').trim();
-  const phone = String(data.get('phone') || '').trim();
-
-  if (!name || !phone) {
-    status.textContent = 'Заполните имя и номер телефона.';
-    return;
-  }
-
-  /* Здесь подключается реальная отправка (fetch на бэкенд / Telegram-бот). */
-  console.log('Заявка:', { 
-    name, 
-    phone, 
-    brief: String(data.get('brief') || '').trim() 
-  });
-  
-  status.textContent = 'Спасибо! Заявка отправлена — свяжусь с вами в ближайшее время.';
-  form.reset();
-});
-
-/* ========== Год в подвале ========== */
-document.getElementById('year').textContent = new Date().getFullYear();
