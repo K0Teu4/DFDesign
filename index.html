@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dmitriy Design — дизайн, который решает задачи</title>
+<link href="https://fonts.googleapis.com/css2?family=Arsenal:wght@400;700&family=Manrope:wght@400;600&family=Montserrat:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#111111; --white:#F5F4F0; --bg:#414141;
+  --d1:#1A1A1A; --d2:#202020; --g1:#3D3D3D; --g2:#6B6B6B;
+  --line:#D8D8D3;
+  --accent:#C6F432; /* TODO: зарезервировано под лайм из мудборда — решить, используем ли */
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font:400 16px/120% 'Manrope',sans-serif;letter-spacing:-0.01em}
+h1,h2,h3{font-family:'Arsenal',sans-serif;font-weight:400;line-height:120%;letter-spacing:-0.05em}
+.sc{font-variant:small-caps} /* текст пишем с заглавной первой — получаем «живые» капители как в макете */
+.h2{font-size:64px}
+.wrap{max-width:1440px;margin:0 auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:16px;padding:24px 32px;border-radius:60px;border:none;cursor:pointer;font:600 16px/120% 'Manrope',sans-serif;letter-spacing:-0.01em;text-transform:uppercase;text-decoration:none}
+.btn--light{background:var(--white);color:var(--black)}
+.btn--dark{background:var(--black);color:var(--white)}
+.link{display:inline-flex;align-items:center;gap:8px;font:600 16px/120% 'Manrope',sans-serif;letter-spacing:-0.01em;text-transform:uppercase;color:var(--white);text-decoration:none}
+.arr{flex:none}
+
+/* ── Header ── */
+.header{display:flex;justify-content:space-between;align-items:center;padding:24px 48px;border-bottom:1px solid rgba(245,244,240,.2)}
+.menu{display:flex;align-items:center;gap:40px;list-style:none}
+.menu a{color:#fff;text-decoration:none;font-weight:600}
+.menu a.is-cta{text-transform:uppercase;display:inline-flex;align-items:center;gap:8px}
+
+/* ── Hero ── */
+.hero{display:flex;min-height:700px}
+.hero__text{width:43%;background:var(--g1);padding:48px 138px 48px 48px;display:flex;flex-direction:column;justify-content:space-between;gap:40px}
+.hero__title{font-size:96px;font-weight:700;text-transform:uppercase}
+.hero__title .sc{display:block;font-size:64px;font-weight:400}
+.hero__text p{max-width:432px}
+.hero__img{flex:1;background:var(--g2)} /* TODO: фото Дмитрия из контент-борда */
+
+/* ── Services ── */
+.services{background:var(--d1);padding:120px 48px 48px}
+.cards4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:64px}
+.card-s{display:flex;flex-direction:column;justify-content:space-between;min-height:397px;padding:24px;background:rgba(17,17,17,.2);border-radius:20px}
+.card-s__top{display:flex;justify-content:space-between;gap:16px}
+.card-s__top h3{font-size:24px}
+.card-s__num{font-family:'Arsenal',sans-serif;font-size:24px;letter-spacing:-0.05em;color:rgba(245,244,240,.4)}
+.card-s p{color:rgba(245,244,240,.8)}
+
+/* ── Portfolio ── */
+.portfolio{padding:120px 48px 48px}
+.p-grid{position:relative;height:590px;margin-top:48px}
+.card-p{position:absolute;width:calc((100% - 48px)/3);padding:24px;display:flex;flex-direction:column;justify-content:flex-end;background:rgba(216,216,211,.2);border-radius:20px}
+.card-p--1{left:0;top:295px;height:295px}
+.card-p--2{left:calc((100% - 48px)/3 + 24px);top:75px;height:440px}
+.card-p--3{left:calc((100% - 48px)/3*2 + 48px);top:0;height:295px}
+.card-p__row{display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+.card-p h3{font-size:24px}
+.card-p p{margin-top:8px}
+.circle{width:30px;height:30px;flex:none;display:flex;align-items:center;justify-content:center;background:none;border:1px solid var(--line);border-radius:50%;color:var(--line);cursor:pointer}
+
+/* ── Process ── */
+.process{background:var(--d2);padding:120px 48px 48px}
+.process__head{display:flex;justify-content:space-between;align-items:flex-start}
+.pr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px}
+.card-pr{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;min-height:244px;padding:24px;background:var(--black);border-radius:20px}
+.card-pr h3{font-size:24px;position:relative;z-index:1;max-width:382px}
+.card-pr p{position:relative;z-index:1;max-width:382px}
+.card-pr__num{position:absolute;top:40px;right:24px;font:600 125px/120% 'Manrope',sans-serif;letter-spacing:-0.01em;text-align:right;
+  background:radial-gradient(50% 50% at 50% 50%,rgba(216,216,211,.4) 0%,rgba(17,17,17,.4) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ── FAQ ── */
+.faq{display:flex}
+.faq__left{width:33.4%;background:var(--g1);padding:120px 48px}
+.faq__right{flex:1;background:var(--g2);padding:120px 80px;display:flex;justify-content:center}
+.acc{width:100%;max-width:800px}
+.acc__item{border-bottom:1px solid #000}
+.acc__head{display:flex;align-items:center;gap:32px;width:100%;padding:24px 16px;background:none;border:none;cursor:pointer;text-align:left}
+.acc__plus{font-family:'Arsenal',sans-serif;font-size:40px;line-height:1;color:var(--black);transition:transform .2s}
+.acc__item.open .acc__plus{transform:rotate(45deg)}
+.acc__q{font-family:'Arsenal',sans-serif;font-size:24px;letter-spacing:-0.05em;color:var(--black)}
+.acc__body{display:none;padding:0 48px 24px 65px;color:var(--black)}
+.acc__item.open .acc__body{display:block}
+
+/* ── CTA / form ── */
+.cta{display:flex}
+.cta__form{width:50.7%;background:#fff;padding:120px 64px;color:var(--black)}
+.cta__form h2{color:#000}
+.cta__form form{display:flex;flex-direction:column;gap:28px;margin-top:24px;max-width:469px}
+.field{width:100%;padding:16px 0;border:none;border-bottom:2px solid #111;background:transparent;outline:none;font-family:'Arsenal',sans-serif;font-size:24px;letter-spacing:-0.05em;color:#111}
+.field::placeholder{color:#111}
+.field--muted{border-bottom-color:rgba(17,17,17,.4)}
+.field--muted::placeholder{color:rgba(17,17,17,.4)}
+.check{display:flex;align-items:center;gap:16px;font-weight:600;color:#111}
+.check input{width:24px;height:24px;flex:none;accent-color:#111}
+.form-status{min-height:19px;font-weight:600;color:#111}
+.cta__side{flex:1;background:var(--d2)} /* TODO: пустая зона из макета — кандидат под блок Telegram-канала */
+
+/* ── Footer ── */
+.footer{padding:48px}
+.footer nav{display:flex;justify-content:center;gap:40px;list-style:none}
+.footer nav a{color:#fff;text-decoration:none;font-weight:600}
+.footer hr{border:none;border-top:1px solid #fff;margin:32px 0 16px}
+.footer__row{display:flex;justify-content:space-between;align-items:center}
+.copy{font-family:'Montserrat',sans-serif;font-size:18px;line-height:150%} /* TODO: Montserrat вне пары Arsenal+Manrope — оставить? */
+.socials{display:flex;gap:16px}
+.socials a{width:24px;height:24px;border-radius:50%;background:#D9D9D9} /* TODO: иконки соцсетей/Telegram */
+
+/* ── Adaptive (база; мобильного макета нет — решить отдельно) ── */
+@media (max-width:1100px){
+  .hero{flex-direction:column}.hero__text{width:100%;padding:48px}
+  .hero__img{min-height:400px}
+  .cards4,.pr-grid{grid-template-columns:repeat(2,1fr)}
+  .p-grid{height:auto;display:grid;grid-template-columns:1fr;gap:24px}
+  .card-p{position:static;width:auto;min-height:295px}
+  .faq,.cta{flex-direction:column}.faq__left,.cta__form{width:100%}
+  .faq__right{padding:64px 32px}
+}
+@media (max-width:640px){
+  .header{flex-wrap:wrap;gap:16px}.menu{gap:20px;flex-wrap:wrap}
+  .hero__title{font-size:56px}.hero__title .sc,.h2{font-size:40px}
+  .cards4,.pr-grid{grid-template-columns:1fr}
+  .services,.portfolio,.process{padding:64px 24px 24px}
+  .faq__left,.cta__form{padding:64px 24px}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <!-- TODO: заменить на файловой логотип Diary/Dmitriy Design -->
+  <a href="#hero" aria-label="На главную">
+    <svg width="53" height="40" viewBox="0 0 53 40" fill="#F5F4F0"><path d="M2 40L18 0h15L19 40z"/><path d="M27 40l9-22h17l-4 10h-8l-5 12z"/></svg>
+  </a>
+  <ul class="menu">
+    <li><a href="#hero">Обо мне</a></li><!-- TODO: личной секции нет в прототипе; ссылка временно на хиро -->
+    <li><a href="#portfolio">Работы</a></li>
+    <li><a href="#services">Подход</a></li>
+    <li><a href="#process">Как я работаю</a></li>
+    <li><a href="#contact">Контакты</a></li>
+    <li><a class="is-cta" href="#contact">Оставить заявку
+      <svg class="arr" width="12" height="12" viewBox="0 0 12 12"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="#F5F4F0" stroke-width="1.5"/></svg></a></li>
+  </ul>
+</header>
+
+<section class="hero" id="hero">
+  <div class="hero__text">
+    <div>
+      <h1 class="hero__title">Дизайн,
+        <span class="sc">Который</span>
+        <span class="sc">Решает задачи</span>
+      </h1>
+      <p style="margin-top:40px">Я Дмитрий — дизайнер, который помогает брендам и специалистам создавать сильный визуальный образ и выделяться среди конкурентов.</p>
+    </div>
+    <a class="btn btn--light" href="#contact">Заказать дизайн
+      <svg class="arr" width="12" height="12" viewBox="0 0 12 12"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="#111111" stroke-width="1.5"/></svg></a>
+  </div>
+  <div class="hero__img" role="img" aria-label="Фото Дмитрия за работой"></div>
+</section>
+
+<section class="services" id="services">
+  <h2 class="h2 sc">Что я делаю?</h2>
+  <div class="cards4">
+    <!-- DRAFT-копирайтинг: заглушки в макете одинаковые — ниже черновики смыслов, заменить на текст заказчика -->
+    <article class="card-s"><div class="card-s__top"><h3>Современный дизайн</h3><span class="card-s__num">01</span></div>
+      <p>Визуальное решение, которое помогает бренду отличаться и запоминаться.</p></article>
+    <article class="card-s"><div class="card-s__top"><h3>Индивидуальный подход</h3><span class="card-s__num">02</span></div>
+      <p>Никаких шаблонов: стартую от вашей задачи, аудитории и контекста, а не от готовой сетки.</p></article>
+    <article class="card-s"><div class="card-s__top"><h3>Гарантия прозрачности</h3><span class="card-s__num">03</span></div>
+      <p>Понятные этапы, сроки и смета на старте — вы всегда знаете, что происходит и почему.</p></article>
+    <article class="card-s"><div class="card-s__top"><h3>Точная реализация</h3><span class="card-s__num">04</span></div>
+      <p>Передаю макеты и гайдлайны, которые команда внедряет без потери идеи.</p></article>
+  </div>
+</section>
+
+<section class="portfolio" id="portfolio">
+  <h2 class="h2 sc">Портфолио</h2>
+  <div class="p-grid">
+    <article class="card-p card-p--1"><div class="card-p__row">
+      <div><h3>Айдентика</h3><p>Создание визуального образа бренда</p></div>
+      <button class="circle" aria-label="Смотреть кейс"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M1 6H11M11 6L7 2M11 6L7 10" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div></article>
+    <article class="card-p card-p--2"><div class="card-p__row">
+      <div><h3>Веб-дизайн</h3><p>Лендинги и интерфейсы</p></div>
+      <button class="circle" aria-label="Смотреть кейс"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M1 6H11M11 6L7 2M11 6L7 10" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div></article>
+    <article class="card-p card-p--3"><div class="card-p__row">
+      <div><h3>Дизайн для соц. сетей</h3><p>Визуальная система для контента</p></div>
+      <button class="circle" aria-label="Смотреть кейс"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M1 6H11M11 6L7 2M11 6L7 10" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div></article>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="process__head">
+    <h2 class="h2 sc">Этапы и процесс работы</h2>
+    <a class="link" href="#contact">Оставить заявку
+      <svg class="arr" width="12" height="12" viewBox="0 0 12 12"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="#F5F4F0" stroke-width="1.5"/></svg></a>
+  </div>
+  <div class="pr-grid">
+    <article class="card-pr"><span class="card-pr__num">01</span><h3>Знакомство</h3><p>Обсуждаем задачу, цели проекта, пожелания и ожидаемый результат</p></article>
+    <article class="card-pr"><span class="card-pr__num">02</span><h3>Анализ</h3><p>Изучаю аудиторию, конкурентов и особенности проекта</p></article>
+    <article class="card-pr"><span class="card-pr__num">03</span><h3>Концепция</h3><p>Формирую визуальное направление и предлагаю решение</p></article>
+    <article class="card-pr"><span class="card-pr__num">04</span><h3>Дизайн</h3><p>Разрабатываю выбранную концепцию и необходимые материалы</p></article>
+    <article class="card-pr"><span class="card-pr__num">05</span><h3>Доработка</h3><p>Обсуждаем результат и вносим необходимые корректировки</p></article>
+    <article class="card-pr"><span class="card-pr__num">06</span><h3>Результат</h3><p>Передаю готовые материалы и необходимые файлы для дальнейшего использования</p></article>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="faq__left"><h2 class="h2 sc">Часто<br>задаваемые<br>вопросы</h2></div>
+  <div class="faq__right"><div class="acc">
+    <!-- DRAFT: ответы черновые — макет содержит только вопросы -->
+    <div class="acc__item"><button class="acc__head"><span class="acc__plus">+</span><span class="acc__q">Сколько стоит UI/UX-дизайн?</span></button>
+      <p class="acc__body">Стоимость зависит от объёма: лендинг, сайт или система. После короткого брифа называю фиксированную смету — в процессе она не меняется.</p></div>
+    <div class="acc__item"><button class="acc__head"><span class="acc__plus">+</span><span class="acc__q">Сколько времени занимает разработка дизайна?</span></button>
+      <p class="acc__body">В среднем 2–4 недели на лендинг и 4–6 на сайт. Точный срок фиксируем после этапа «Знакомство».</p></div>
+    <div class="acc__item"><button class="acc__head"><span class="acc__plus">+</span><span class="acc__q">Можно ли заказать только часть проекта?</span></button>
+      <p class="acc__body">Да: например, только айдентику или только лендинг. Но системный результат даёт работа целиком.</p></div>
+    <div class="acc__item"><button class="acc__head"><span class="acc__plus">+</span><span class="acc__q">Как проходит начало работы?</span></button>
+      <p class="acc__body">С бесплатной встречи-знакомства: обсуждаем задачу, цели и ожидаемый результат, затем предлагаю план и смету.</p></div>
+    <div class="acc__item"><button class="acc__head"><span class="acc__plus">+</span><span class="acc__q">Работаете ли вы с правками?</span></button>
+      <p class="acc__body">Да, правки входят в этап «Доработка»: обсуждаем результат и вносим корректировки до соответствия задаче.</p></div>
+  </div></div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="cta__form">
+    <h2 class="h2 sc">Оставьте заявку</h2>
+    <form id="lead" novalidate>
+      <input class="field" name="name" placeholder="Ваше имя" required>
+      <input class="field" name="phone" type="tel" placeholder="Номер телефона" required>
+      <input class="field field--muted" name="about" placeholder="Кратко о проекте">
+      <label class="check"><input type="checkbox" name="agree" required>
+        <span>Нажимая кнопку,<br>я даю согласие на обработку персональных данных</span></label>
+      <button class="btn btn--dark" type="submit">Обсудить проект
+        <svg class="arr" width="12" height="12" viewBox="0 0 12 12"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="#F5F4F0" stroke-width="1.5"/></svg></button>
+      <p class="form-status" role="status"></p>
+    </form>
+  </div>
+  <div class="cta__side"></div>
+</section>
+
+<footer class="footer">
+  <nav><ul class="menu" style="justify-content:center">
+    <li><a href="#hero">Обо мне</a></li><li><a href="#portfolio">Работы</a></li>
+    <li><a href="#services">Подход</a></li><li><a href="#process">Как я работаю</a></li>
+    <li><a href="#contact">Контакты</a></li>
+  </ul></nav>
+  <hr>
+  <div class="footer__row">
+    <p class="copy">© 2026 Dmitriy Design. All rights reserved.</p><!-- опечатка «Dmiriy» из макета исправлена -->
+    <div class="socials"><a href="#" aria-label="Соцсеть 1"></a><a href="#" aria-label="Соцсеть 2"></a><a href="#" aria-label="Соцсеть 3"></a></div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.acc__head').forEach(btn=>{
+  btn.addEventListener('click',()=>btn.closest('.acc__item').classList.toggle('open'));
+});
+document.getElementById('lead').addEventListener('submit',e=>{
+  e.preventDefault();
+  const f=e.target, status=f.querySelector('.form-status');
+  if(!f.name.value.trim()||!f.phone.value.trim()||!f.agree.checked){
+    status.textContent='Заполните имя, телефон и согласие — и я получу заявку.';return;
+  }
+  status.textContent='Спасибо! Заявка принята (демо-режим: данные никуда не отправляются).';
+  f.reset();
+});
+</script>
+</body>
+</html>
