@@ -1,115 +1,94 @@
-/* ===== Accordion ===== */
-document.querySelectorAll('.acc__head').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const item = btn.closest('.acc__item');
-    item.classList.toggle('open');
-    btn.setAttribute('aria-expanded', item.classList.contains('open'));
-  });
-});
+document.addEventListener('DOMContentLoaded', function () {
 
-/* ===== Burger ===== */
-const burger = document.getElementById('burger');
-const menu = document.getElementById('menu');
-burger.addEventListener('click', ()=>{
-  const open = burger.classList.toggle('is-open');
-  menu.classList.toggle('is-open', open);
-  burger.setAttribute('aria-expanded', open);
-  document.body.style.overflow = open ? 'hidden' : '';
-});
-menu.querySelectorAll('a').forEach(a=>{
-  a.addEventListener('click', ()=>{
-    burger.classList.remove('is-open');
-    menu.classList.remove('is-open');
-    burger.setAttribute('aria-expanded', false);
-    document.body.style.overflow = '';
-  });
-});
+    /* ================== FAQ ACCORDION ================== */
+    const faqItems = document.querySelectorAll('.faq__item');
 
-/* ===== Form validation ===== */
-const form = document.getElementById('lead');
-const submitBtn = document.getElementById('submitBtn');
-const status = form.querySelector('.form-status');
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq__question');
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
 
-const phoneRe = /^[+\d][\d\s\-()]{7,}$/;
+            // Закрываем все
+            faqItems.forEach(i => i.classList.remove('active'));
 
-function setFieldState(input, state, message=''){
-  const wrap = input.closest('.field-wrap');
-  if(!wrap) return;
-  wrap.classList.remove('is-error','is-success');
-  input.classList.remove('is-error','is-success');
-  const msg = wrap.querySelector('.field-status');
-  if(state==='error'){
-    wrap.classList.add('is-error');
-    input.classList.add('is-error');
-    if(msg) msg.textContent = message;
-  } else if(state==='success'){
-    wrap.classList.add('is-success');
-    input.classList.add('is-success');
-    if(msg) msg.textContent = '';
-  } else if(msg){
-    msg.textContent = '';
-  }
-}
+            // Открываем текущий, если был закрыт
+            if (!isActive) item.classList.add('active');
+        });
+    });
 
-['name','phone'].forEach(name=>{
-  const inp = form.elements[name];
-  inp.addEventListener('blur', ()=>{
-    if(!inp.value.trim()){
-      setFieldState(inp,'error', name==='name'?'Введите имя':'Введите телефон');
-    } else if(name==='phone' && !phoneRe.test(inp.value.trim())){
-      setFieldState(inp,'error','Проверьте формат телефона');
-    } else {
-      setFieldState(inp,'success');
+    /* ================== BURGER MENU ================== */
+    const burger = document.querySelector('.burger');
+    const nav = document.querySelector('.nav');
+
+    if (burger && nav) {
+        burger.addEventListener('click', () => {
+            nav.classList.toggle('nav--open');
+            burger.classList.toggle('burger--open');
+        });
+
+        // Закрываем при клике на ссылку
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('nav--open');
+                burger.classList.remove('burger--open');
+            });
+        });
     }
-  });
-  inp.addEventListener('input', ()=>{
-    if(inp.classList.contains('is-error') && inp.value.trim()){
-      if(name==='phone' && !phoneRe.test(inp.value.trim())) return;
-      setFieldState(inp,'success');
+
+    /* ================== FORM VALIDATION ================== */
+    const form = document.getElementById('contactForm');
+
+    if (form) {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const name = form.name.value.trim();
+            const phone = form.phone.value.trim();
+            const checkbox = form.querySelector('input[type="checkbox"]');
+
+            // Простая валидация
+            if (name.length < 2) {
+                alert('Пожалуйста, введите имя');
+                return;
+            }
+
+            const phonePattern = /^[\d\s\+\-\(\)]{7,}$/;
+            if (!phonePattern.test(phone)) {
+                alert('Пожалуйста, введите корректный номер телефона');
+                return;
+            }
+
+            if (!checkbox.checked) {
+                alert('Необходимо согласие на обработку персональных данных');
+                return;
+            }
+
+            // Здесь можно отправить данные на сервер
+            console.log('Form submitted:', {
+                name,
+                phone,
+                project: form.project.value.trim()
+            });
+
+            alert('Спасибо! Ваша заявка отправлена.');
+            form.reset();
+        });
     }
-  });
-});
 
-form.addEventListener('submit', e=>{
-  e.preventDefault();
-  const name = form.elements.name;
-  const phone = form.elements.phone;
-  const agree = form.elements.agree;
-  let valid = true;
+    /* ================== SMOOTH ANCHORS ================== */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            if (targetId.length < 2) return;
 
-  if(!name.value.trim()){ setFieldState(name,'error','Введите имя'); valid=false; }
-  else setFieldState(name,'success');
+            const target = document.querySelector(targetId);
+            if (target) {
+                e.preventDefault();
+                const offset = 20;
+                const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                window.scrollTo({ top, behavior: 'smooth' });
+            }
+        });
+    });
 
-  if(!phone.value.trim()){ setFieldState(phone,'error','Введите телефон'); valid=false; }
-  else if(!phoneRe.test(phone.value.trim())){ setFieldState(phone,'error','Проверьте формат'); valid=false; }
-  else setFieldState(phone,'success');
-
-  if(!agree.checked){
-    status.textContent='Подтвердите согласие на обработку данных';
-    valid=false;
-  } else status.textContent='';
-
-  if(!valid) return;
-
-  submitBtn.setAttribute('aria-disabled','true');
-  submitBtn.disabled = true;
-  status.textContent='Отправляю...';
-
-  // Демо: имитация запроса
-  setTimeout(()=>{
-    status.textContent='Спасибо! Заявка принята — свяжусь в течение дня.';
-    form.reset();
-    document.querySelectorAll('.field-wrap').forEach(w=>w.classList.remove('is-error','is-success'));
-    submitBtn.removeAttribute('aria-disabled');
-    submitBtn.disabled = false;
-  }, 600);
-});
-
-/* ===== Fade images on load ===== */
-document.querySelectorAll('[style*="background-image"]').forEach(el=>{
-  el.style.opacity='0';
-  el.style.transition='opacity .6s ease';
-  requestAnimationFrame(()=>{
-    requestAnimationFrame(()=>{ el.style.opacity='1'; });
-  });
 });
