@@ -120,26 +120,32 @@ textarea {
     z-index: 2;
 }
 
-.star--spin { animation: star-spin 28s linear infinite; }
-.star--pulse { animation: star-pulse 4.5s ease-in-out infinite; }
-
 @keyframes star-spin {
+    from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
 
 @keyframes star-pulse {
-    0%, 100% { opacity: .5; }
-    50% { opacity: 1; }
+    0%, 100% { opacity: .45; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.12); }
 }
 
-.star--hero-1 { left: 520px; top: 140px; width: 64px; height: 64px; }
-.star--hero-2 { left: 560px; top: 240px; width: 13px; height: 13px; }
-.star--hero-3 { left: 47%; top: 64%; width: 13px; height: 13px; }
+.star--spin {
+    animation: star-spin 14s linear infinite;
+    transform-origin: 50% 50%;
+}
+
+.star--pulse {
+    animation: star-pulse 3.6s ease-in-out infinite;
+}
+
+.star--hero-1 { right: 120px; top: 150px; width: 64px; height: 64px; }
+.star--hero-2 { right: 210px; top: 250px; width: 13px; height: 13px; }
 
 .star--services-1 { right: 68px; top: 130px; width: 64px; height: 64px; }
 .star--services-2 { right: 40px; top: 200px; width: 13px; height: 13px; }
 .star--services-3 { left: 48px; top: 120px; width: 13px; height: 13px; }
-.star--services-4 { left: 44%; top: 44px; width: 13px; height: 13px; }
+.star--services-4 { left: 38%; bottom: 70px; width: 40px; height: 40px; }
 
 .star--p1 { left: 912px; top: 295px; width: 118px; height: 118px; }
 .star--p2 { left: 98px; top: 75px; width: 118px; height: 118px; }
@@ -147,38 +153,20 @@ textarea {
 .star--p4 { left: 172px; top: 193px; width: 13px; height: 13px; }
 .star--p5 { left: 1071px; top: 383px; width: 13px; height: 13px; }
 .star--p6 { left: 290px; top: 8px; width: 13px; height: 13px; }
-.star--p7 { right: 18%; top: 46%; width: 13px; height: 13px; }
-.star--p8 { left: 56%; top: 6px; width: 13px; height: 13px; }
+.star--p7 { right: 30%; top: 45%; width: 13px; height: 13px; }
+.star--p8 { left: 55%; top: 0; width: 40px; height: 40px; }
 
 .star--process-1 { right: 68px; top: 120px; width: 64px; height: 64px; }
 .star--process-2 { right: 220px; bottom: 40px; width: 13px; height: 13px; }
-.star--process-3 { left: 6%; top: 58%; width: 13px; height: 13px; }
+.star--process-3 { left: 48px; top: 55%; width: 13px; height: 13px; }
 
 .star--faq { left: 184px; top: 186px; width: 64px; height: 64px; }
+.star--faq-2 { right: 60px; top: 60px; width: 13px; height: 13px; }
 
-.star--contact-1 { right: 38%; top: 64px; width: 64px; height: 64px; }
-.star--contact-2 { right: 6%; bottom: 170px; width: 13px; height: 13px; }
+.star--contact-1 { right: 64px; top: 64px; width: 64px; height: 64px; }
 
 .star--footer-1 { right: 48px; top: 40px; width: 13px; height: 13px; }
-.star--footer-2 { left: 12%; top: 42px; width: 13px; height: 13px; }
-
-.reveal {
-    opacity: 0;
-    translate: 0 36px;
-    transition: opacity .7s ease, translate .7s ease;
-}
-
-.reveal.is-visible {
-    opacity: 1;
-    translate: 0 0;
-}
-
-.reveal--d1 { transition-delay: .07s; }
-.reveal--d2 { transition-delay: .14s; }
-.reveal--d3 { transition-delay: .21s; }
-.reveal--d4 { transition-delay: .28s; }
-.reveal--d5 { transition-delay: .35s; }
-.reveal--d6 { transition-delay: .42s; }
+.star--footer-2 { left: 48px; top: 40px; width: 13px; height: 13px; }
 
 .hero {
     position: relative;
@@ -460,6 +448,12 @@ textarea {
     top: 0;
 }
 
+.portfolio__text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
 .portfolio__title {
     font-family: 'Arsenal', serif;
     font-weight: 400;
@@ -467,7 +461,6 @@ textarea {
     line-height: 1.2;
     letter-spacing: -0.05em;
     color: #F5F4F0;
-    margin-bottom: 8px;
 }
 
 .portfolio__subtitle {
@@ -507,6 +500,8 @@ textarea {
 }
 
 .process__head .section__title { margin-bottom: 0; }
+
+.process-title span { display: inline; }
 
 .process {
     display: grid;
@@ -553,6 +548,7 @@ textarea {
     line-height: 1.2;
     letter-spacing: -0.01em;
     text-align: right;
+    white-space: nowrap;
     background: radial-gradient(50% 50% at 50% 50%, rgba(216, 216, 211, 0.4) 0%, rgba(17, 17, 17, 0.4) 100%);
     -webkit-background-clip: text;
     background-clip: text;
@@ -601,6 +597,7 @@ textarea {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
 }
 
 .faq__item {
@@ -620,8 +617,8 @@ textarea {
 .faq__plus {
     position: relative;
     flex-shrink: 0;
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     transition: transform .3s;
 }
 
@@ -629,25 +626,26 @@ textarea {
 .faq__plus::after {
     content: '';
     position: absolute;
-    top: 50%;
     left: 50%;
+    top: 50%;
     background: #111111;
-    border-radius: 1px;
+    border-radius: 2px;
+    transform: translate(-50%, -50%);
 }
 
 .faq__plus::before {
-    width: 18px;
+    width: 20px;
     height: 2px;
-    transform: translate(-50%, -50%);
 }
 
 .faq__plus::after {
     width: 2px;
-    height: 18px;
-    transform: translate(-50%, -50%);
+    height: 20px;
 }
 
-.faq__item.active .faq__plus { transform: rotate(45deg); }
+.faq__item.active .faq__plus {
+    transform: rotate(45deg);
+}
 
 .faq__text {
     font-family: 'Arsenal', serif;
@@ -660,7 +658,7 @@ textarea {
     max-height: 0;
     overflow: hidden;
     transition: max-height .4s, padding .3s;
-    padding: 0 16px 0 66px;
+    padding: 0 16px 0 68px;
 }
 
 .faq__answer p {
@@ -734,6 +732,7 @@ textarea {
     letter-spacing: -0.05em;
     color: #111111;
     caret-color: #111111;
+    padding-right: 34px;
 }
 
 .form__field textarea {
@@ -752,7 +751,9 @@ textarea {
 }
 
 .form__field--last input::placeholder,
-.form__field--last textarea::placeholder { color: rgba(17, 17, 17, 0.4); }
+.form__field--last textarea::placeholder {
+    color: rgba(17, 17, 17, 0.4);
+}
 
 .form__status {
     position: absolute;
@@ -773,7 +774,10 @@ textarea {
 .form__field--error .form__status { display: block; color: #D34339; }
 .form__field--error .form__icon--err { display: block; }
 .form__field--error input,
-.form__field--error textarea { color: #D34339; caret-color: #D34339; }
+.form__field--error textarea {
+    color: #D34339;
+    caret-color: #D34339;
+}
 
 .checkbox {
     display: flex;
@@ -833,6 +837,7 @@ textarea {
 }
 
 .contact__image {
+    min-height: 750px;
     background-size: cover;
     background-position: center;
 }
@@ -973,9 +978,9 @@ textarea {
     .contact__title,
     .faq__title { font-size: 52px; }
     .star--p1 { left: auto; right: 40px; }
-    .star--hero-1 { left: auto; right: 96px; }
-    .star--hero-2 { left: auto; right: 150px; }
-    .star--contact-1 { right: 30%; }
+    .star--p7 { right: 20%; }
+    .star--hero-1 { right: 60px; }
+    .star--hero-2 { right: 130px; }
     .faq { grid-template-columns: 380px 1fr; }
     .contact { grid-template-columns: 1fr 1fr; }
     .contact__form-block { padding: 80px 40px; }
@@ -1029,9 +1034,13 @@ textarea {
         gap: 40px;
     }
     .hero__image { min-height: 500px; }
+    .star--hero-1 { right: 40px; top: 120px; }
+    .star--hero-2 { right: 90px; top: 200px; }
 
     .services { grid-template-columns: repeat(2, 1fr); }
+    .star--services-4 { display: none; }
     .process { grid-template-columns: repeat(2, 1fr); }
+    .star--process-3 { display: none; }
 
     .portfolio { height: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .portfolio__card {
@@ -1041,13 +1050,15 @@ textarea {
     }
     .portfolio__card--center { grid-column: span 2; height: 380px; }
     .star--p1, .star--p2, .star--p3, .star--p4, .star--p5, .star--p6, .star--p7, .star--p8 { display: none; }
-    .star--faq { display: none; }
 
     .faq { grid-template-columns: 1fr; }
     .faq__left { padding: 64px 32px; }
+    .star--faq { display: none; }
+    .star--faq-2 { display: none; }
     .faq__right { padding: 64px 32px; }
 
     .contact { grid-template-columns: 1fr; }
+    .star--contact-1 { right: 32px; top: 32px; width: 40px; height: 40px; }
     .contact__image { min-height: 400px; }
 }
 
@@ -1061,18 +1072,8 @@ textarea {
     .hero__title { font-size: 88px; }
     .hero__subtitle { font-size: 56px; }
     .hero__image { min-height: 320px; }
-
-    .star--hero-1 { left: auto; right: 24px; top: 96px; width: 40px; height: 40px; }
-    .star--hero-2 { left: auto; right: 70px; top: 150px; }
-    .star--hero-3 { display: none; }
-    .star--services-1 { right: 24px; top: 90px; width: 40px; height: 40px; }
-    .star--services-2, .star--services-3, .star--services-4 { display: none; }
-    .star--process-1 { right: 24px; top: 90px; width: 40px; height: 40px; }
-    .star--process-2, .star--process-3 { display: none; }
-    .star--contact-1 { right: auto; left: 24px; top: 40px; width: 40px; height: 40px; }
-    .star--contact-2 { display: none; }
-    .star--footer-1 { right: 24px; top: 24px; }
-    .star--footer-2 { left: 24px; top: 24px; }
+    .star--hero-1 { right: 24px; top: 96px; width: 40px; height: 40px; }
+    .star--hero-2 { display: none; }
 
     .section { padding: 64px 0 32px; }
     .section__title,
@@ -1082,39 +1083,44 @@ textarea {
     .services { grid-template-columns: 1fr; gap: 24px; }
     .service-card { height: 397px; }
     .service-card__desc { opacity: 1; transform: none; }
+    .star--services-1 { right: 24px; top: 90px; width: 40px; height: 40px; }
+    .star--services-2, .star--services-3 { display: none; }
 
     .process { grid-template-columns: 1fr; gap: 8px; }
-    .process-card { min-height: 244px; }
     .process-title span { display: block; }
-    .process-title span:nth-child(1) { text-align: left; }
     .process-title span:nth-child(2) { text-align: center; }
     .process-title span:nth-child(3) { text-align: right; }
     .process__head { flex-direction: column; align-items: stretch; gap: 24px; }
     .process__head .link-arrow { align-self: center; }
+    .star--process-1 { right: 24px; top: 90px; width: 40px; height: 40px; }
+    .star--process-2 { display: none; }
 
     .portfolio { grid-template-columns: 1fr; gap: 24px; }
     .portfolio__card { height: 155px; padding: 80px 8px 16px; }
     .portfolio__card--center { grid-column: auto; height: 300px; padding: 225px 8px 24px; }
     .portfolio__card--right { height: 155px; padding: 80px 8px 16px; }
+    .portfolio__title { font-size: 20px; }
+    .portfolio__arrow { width: 40px; height: 40px; }
 
     .faq__left { padding: 0 16px 40px; }
     .faq__right { padding: 24px 16px 64px; }
-    .faq__question { padding: 8px; gap: 12px; }
-    .faq__plus { width: 14px; height: 14px; }
-    .faq__plus::before { width: 14px; }
-    .faq__plus::after { height: 14px; }
-    .faq__text { font-size: 24px; }
-    .faq__answer { padding-left: 34px; }
+    .faq__question { padding: 20px 8px; gap: 16px; }
+    .faq__plus { width: 16px; height: 16px; }
+    .faq__plus::before { width: 16px; }
+    .faq__plus::after { height: 16px; }
+    .faq__text { font-size: 20px; }
+    .faq__answer { padding-left: 40px; }
 
     .contact__form-block { padding: 0 16px 64px; }
     .form { gap: 32px; }
     .form__field input,
-    .form__field textarea { font-size: 24px; }
+    .form__field textarea { font-size: 20px; }
     .form__field input::placeholder,
-    .form__field textarea::placeholder { font-size: 24px; }
+    .form__field textarea::placeholder { font-size: 20px; }
     .contact__image { min-height: 202px; }
+    .star--contact-1 { right: 24px; top: 24px; width: 32px; height: 32px; }
 
-    .footer { padding: 0 16px 16px; }
+    .footer { padding: 32px 16px 16px; }
     .footer__inner { gap: 16px; }
     .footer__menu {
         flex-direction: column;
@@ -1125,8 +1131,6 @@ textarea {
     }
     .footer__menu a {
         height: 40px;
-        display: flex;
-        align-items: center;
         text-transform: uppercase;
     }
     .footer__bottom {
@@ -1135,17 +1139,19 @@ textarea {
         gap: 16px;
     }
     .footer__socials { gap: 10px; padding-bottom: 16px; }
+    .star--footer-1 { right: 24px; top: 24px; }
+    .star--footer-2 { left: 24px; top: 24px; }
 
-    .toast { top: 16px; left: 16px; right: 16px; width: auto; }
+    .toast { top: 16px; right: 16px; left: 16px; width: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .reveal {
-        opacity: 1;
-        translate: 0 0;
-        transition: none;
-    }
     .star--spin,
     .star--pulse { animation: none; }
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }

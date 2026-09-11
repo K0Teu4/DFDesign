@@ -54,8 +54,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('contactForm');
 
     if (form) {
-        const phonePattern = /^[\d\s+\-()]{7,}$/;
-        const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+        const phonePattern = /^[\d\s\+\-\(\)]{7,}$/;
+        const emailPattern = /^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$/;
 
         const validators = {
             name: v => v.trim().length >= 2,
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 field.wrap.classList.add('form__field--success');
                 return true;
             }
-            if (submitAttempted || (field.input.dataset.touched === '1' && value.trim() !== '')) {
+            if (submitAttempted || field.input.dataset.touched === '1') {
                 field.wrap.classList.add('form__field--error');
             }
             return false;
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
             project.addEventListener('input', grow);
         }
 
-        form.addEventListener('submit', async function (e) {
+        form.addEventListener('submit', function (e) {
             e.preventDefault();
             submitAttempted = true;
 
@@ -135,37 +135,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-            const sendBtn = form.querySelector('button[type="submit"]');
-            sendBtn.disabled = true;
+            console.log('Form submitted:', {
+                name: fields.name.input.value.trim(),
+                contact: fields.contact.input.value.trim(),
+                contactType: fields.contact.input.value.includes('@') ? 'email' : 'phone',
+                project: project ? project.value.trim() : ''
+            });
 
-            try {
-                const response = await fetch('/api/lead', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        name: fields.name.input.value.trim(),
-                        contact: fields.contact.input.value.trim(),
-                        project: project ? project.value.trim() : ''
-                    })
-                });
-                const result = await response.json();
-                if (result.ok) {
-                    showToast('Спасибо! Заявка отправлена — свяжусь с вами в ближайшее время', 'success');
-                    form.reset();
-                    submitAttempted = false;
-                    Object.keys(fields).forEach(key => {
-                        fields[key].wrap.classList.remove('form__field--success', 'form__field--error');
-                        delete fields[key].input.dataset.touched;
-                    });
-                    if (project) project.style.height = 'auto';
-                } else {
-                    showToast('Бот не принял заявку: ' + (result.error || 'неизвестная ошибка'));
-                }
-            } catch (err) {
-                showToast('Не удалось отправить заявку. Попробуйте ещё раз чуть позже.');
-            } finally {
-                sendBtn.disabled = false;
-            }
+            showToast('Спасибо! Заявка отправлена — свяжусь с вами в ближайшее время', 'success');
+            form.reset();
+            submitAttempted = false;
+            Object.keys(fields).forEach(key => {
+                fields[key].wrap.classList.remove('form__field--success', 'form__field--error');
+                delete fields[key].input.dataset.touched;
+            });
+            if (project) project.style.height = 'auto';
         });
     }
 
