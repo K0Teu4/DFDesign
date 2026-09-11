@@ -21,6 +21,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (toastClose) toastClose.addEventListener('click', hideToast);
 
+    const revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        revealEls.forEach(function (el) { io.observe(el); });
+    } else {
+        revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+    }
+
     const faqItems = document.querySelectorAll('.faq__item');
 
     faqItems.forEach(item => {
@@ -99,7 +114,6 @@ document.addEventListener('DOMContentLoaded', function () {
             e.preventDefault();
 
             const nameOk = paint('name');
-            const contactInput = form.querySelector('input[name="contact"]');
             const contactOk = paint('contact');
             const checkbox = form.querySelector('input[type="checkbox"]');
 
@@ -110,6 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             if (!contactOk) {
+                const contactInput = form.querySelector('input[name="contact"]');
                 const isEmail = contactInput.value.includes('@');
                 showToast(isEmail
                     ? 'Похоже, в e-mail опечатка. Пример: name@mail.ru'
@@ -125,8 +140,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
             console.log('Form submitted:', {
                 name: form.name.value.trim(),
-                contact: contactInput.value.trim(),
-                contactType: contactInput.value.includes('@') ? 'email' : 'phone',
+                contact: form.contact.value.trim(),
+                contactType: form.contact.value.includes('@') ? 'email' : 'phone',
                 project: project ? project.value.trim() : ''
             });
 
