@@ -1,0 +1,18 @@
+# зависимости — не должны попадать в репозиторий
+node_modules/
+
+# переменные окружения — секреты не коммитим
+.env
+.env.local
+.env.production
+
+# служебное
+.vercel/
+dist/
+build/
+.DS_Store
+Thumbs.db
+
+# логи
+*.log
+npm-debug.log*

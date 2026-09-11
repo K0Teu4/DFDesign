@@ -54,8 +54,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('contactForm');
 
     if (form) {
-        const phonePattern = /^[\d\s\+\-\(\)]{7,}$/;
-        const emailPattern = /^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$/;
+        const phonePattern = /^[\d\s+\-()]{7,}$/;
+        const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
         const validators = {
             name: v => v.trim().length >= 2,
@@ -76,16 +76,16 @@ document.addEventListener('DOMContentLoaded', function () {
         let submitAttempted = false;
 
         function paint(key) {
-            const f = fields[key];
-            const value = f.input.value;
+            const field = fields[key];
+            const value = field.input.value;
             const valid = validators[key](value);
-            f.wrap.classList.remove('form__field--success', 'form__field--error');
+            field.wrap.classList.remove('form__field--success', 'form__field--error');
             if (valid) {
-                f.wrap.classList.add('form__field--success');
+                field.wrap.classList.add('form__field--success');
                 return true;
             }
-            if (submitAttempted || (f.input.dataset.touched === '1' && value.trim() !== '')) {
-                f.wrap.classList.add('form__field--error');
+            if (submitAttempted || (field.input.dataset.touched === '1' && value.trim() !== '')) {
+                field.wrap.classList.add('form__field--error');
             }
             return false;
         }
@@ -135,23 +135,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-            const payload = {
-                name: fields.name.input.value.trim(),
-                contact: fields.contact.input.value.trim(),
-                project: project ? project.value.trim() : ''
-            };
-
             const sendBtn = form.querySelector('button[type="submit"]');
             sendBtn.disabled = true;
 
             try {
-                const res = await fetch('/api/lead', {
+                const response = await fetch('/api/lead', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+                    body: JSON.stringify({
+                        name: fields.name.input.value.trim(),
+                        contact: fields.contact.input.value.trim(),
+                        project: project ? project.value.trim() : ''
+                    })
                 });
-                const data = await res.json();
-                if (data.ok) {
+                const result = await response.json();
+                if (result.ok) {
                     showToast('Спасибо! Заявка отправлена — свяжусь с вами в ближайшее время', 'success');
                     form.reset();
                     submitAttempted = false;
@@ -161,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
                     if (project) project.style.height = 'auto';
                 } else {
-                    showToast('Бот не принял заявку. Попробуйте ещё раз чуть позже.');
+                    showToast('Бот не принял заявку: ' + (result.error || 'неизвестная ошибка'));
                 }
             } catch (err) {
                 showToast('Не удалось отправить заявку. Попробуйте ещё раз чуть позже.');
