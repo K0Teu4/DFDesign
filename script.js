@@ -21,21 +21,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (toastClose) toastClose.addEventListener('click', hideToast);
 
-    const revealEls = document.querySelectorAll('.reveal');
-    if ('IntersectionObserver' in window) {
-        const io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    io.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-        revealEls.forEach(function (el) { io.observe(el); });
-    } else {
-        revealEls.forEach(function (el) { el.classList.add('is-visible'); });
-    }
-
     const faqItems = document.querySelectorAll('.faq__item');
 
     faqItems.forEach(item => {
@@ -81,24 +66,36 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         };
 
-        function paint(key) {
+        const fields = {};
+        Object.keys(validators).forEach(key => {
             const wrap = form.querySelector('.form__field[data-field="' + key + '"]');
-            if (!wrap) return true;
-            const input = wrap.querySelector('input, textarea');
-            const value = input.value;
-            wrap.classList.remove('form__field--success', 'form__field--error');
-            if (!value.trim()) return false;
-            const ok = validators[key](value);
-            wrap.classList.add(ok ? 'form__field--success' : 'form__field--error');
-            return ok;
+            const input = wrap ? wrap.querySelector('input') : null;
+            if (input) fields[key] = { wrap: wrap, input: input };
+        });
+
+        let submitAttempted = false;
+
+        function paint(key) {
+            const f = fields[key];
+            const value = f.input.value;
+            const valid = validators[key](value);
+            f.wrap.classList.remove('form__field--success', 'form__field--error');
+            if (valid) {
+                f.wrap.classList.add('form__field--success');
+                return true;
+            }
+            if (submitAttempted || (f.input.dataset.touched === '1' && value.trim() !== '')) {
+                f.wrap.classList.add('form__field--error');
+            }
+            return false;
         }
 
-        ['name', 'contact'].forEach(key => {
-            const wrap = form.querySelector('.form__field[data-field="' + key + '"]');
-            if (!wrap) return;
-            const input = wrap.querySelector('input');
-            input.addEventListener('input', () => paint(key));
-            input.addEventListener('blur', () => paint(key));
+        Object.keys(fields).forEach(key => {
+            fields[key].input.addEventListener('input', () => paint(key));
+            fields[key].input.addEventListener('blur', () => {
+                fields[key].input.dataset.touched = '1';
+                paint(key);
+            });
         });
 
         const project = form.querySelector('textarea[name="project"]');
@@ -110,8 +107,9 @@ document.addEventListener('DOMContentLoaded', function () {
             project.addEventListener('input', grow);
         }
 
-        form.addEventListener('submit', function (e) {
+        form.addEventListener('submit', async function (e) {
             e.preventDefault();
+            submitAttempted = true;
 
             const nameOk = paint('name');
             const contactOk = paint('contact');
@@ -119,17 +117,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (!nameOk) {
                 showToast('Пожалуйста, введите имя');
-                form.querySelector('input[name="name"]').focus();
+                fields.name.input.focus();
                 return;
             }
 
             if (!contactOk) {
-                const contactInput = form.querySelector('input[name="contact"]');
-                const isEmail = contactInput.value.includes('@');
+                const isEmail = fields.contact.input.value.includes('@');
                 showToast(isEmail
                     ? 'Похоже, в e-mail опечатка. Пример: name@mail.ru'
                     : 'Введите телефон (например, +7 951 794-44-82) или e-mail');
-                contactInput.focus();
+                fields.contact.input.focus();
                 return;
             }
 
@@ -138,19 +135,39 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-            console.log('Form submitted:', {
-                name: form.name.value.trim(),
-                contact: form.contact.value.trim(),
-                contactType: form.contact.value.includes('@') ? 'email' : 'phone',
+            const payload = {
+                name: fields.name.input.value.trim(),
+                contact: fields.contact.input.value.trim(),
                 project: project ? project.value.trim() : ''
-            });
+            };
 
-            showToast('Спасибо! Заявка отправлена — свяжусь с вами в ближайшее время', 'success');
-            form.reset();
-            form.querySelectorAll('.form__field').forEach(f => {
-                f.classList.remove('form__field--success', 'form__field--error');
-            });
-            if (project) project.style.height = 'auto';
+            const sendBtn = form.querySelector('button[type="submit"]');
+            sendBtn.disabled = true;
+
+            try {
+                const res = await fetch('/api/lead', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                if (data.ok) {
+                    showToast('Спасибо! Заявка отправлена — свяжусь с вами в ближайшее время', 'success');
+                    form.reset();
+                    submitAttempted = false;
+                    Object.keys(fields).forEach(key => {
+                        fields[key].wrap.classList.remove('form__field--success', 'form__field--error');
+                        delete fields[key].input.dataset.touched;
+                    });
+                    if (project) project.style.height = 'auto';
+                } else {
+                    showToast('Бот не принял заявку. Попробуйте ещё раз чуть позже.');
+                }
+            } catch (err) {
+                showToast('Не удалось отправить заявку. Попробуйте ещё раз чуть позже.');
+            } finally {
+                sendBtn.disabled = false;
+            }
         });
     }
 
@@ -163,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 e.preventDefault();
                 const offset = 20;
                 const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
-                window.scrollTo({ top, behavior: 'smooth' });
+                window.scrollTo({ top: top, behavior: 'smooth' });
             }
         });
     });
