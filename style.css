@@ -251,7 +251,7 @@ input {
     background:
         linear-gradient(360deg, #111111 0%, rgba(17, 17, 17, 0) 23.75%),
         linear-gradient(89.15deg, #111111 0.67%, rgba(17, 17, 17, 0) 52.53%),
-        url('assets/personal_brand_portrait.png') center/cover no-repeat;
+        url('img/%D1%8F.jpg') center/cover no-repeat;
 }
 
 /* ================== SECTION 2: SERVICES ================== */
@@ -263,32 +263,59 @@ input {
     gap: 24px;
 }
 
+/* НОВОЕ: карточка с рамкой, контент виден постоянно (как на макете) */
 .service-card {
     height: 397px;
     border-radius: 20px;
+    border: 1px solid rgba(184, 255, 60, 0.4);
     background-size: cover;
     background-position: center;
     position: relative;
     overflow: hidden;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
     transition: transform .3s;
 }
 
 .service-card:hover { transform: translateY(-4px); }
 
-.service-card__label {
-    position: absolute;
-    left: 24px;
-    bottom: 24px;
-    font-family: 'Arsenal', serif;
-    font-size: 24px;
-    font-weight: 400;
-    color: #F5F4F0;
-    letter-spacing: -0.05em;
-    opacity: 0;
-    transition: opacity .3s;
+.service-card__head {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
 }
 
-.service-card:hover .service-card__label { opacity: 1; }
+.service-card__title {
+    font-family: 'Arsenal', serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: -0.05em;
+    color: #F5F4F0;
+}
+
+.service-card__num {
+    font-family: 'Arsenal', serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: -0.05em;
+    color: rgba(245, 244, 240, 0.4);
+}
+
+.service-card__desc {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: rgba(245, 244, 240, 0.8);
+    max-width: 268px;
+}
 
 .star--services-1 { right: 68px; top: 130px; width: 64px; height: 64px; }
 .star--services-2 { right: 40px; top: 200px; width: 13px; height: 13px; }
@@ -302,11 +329,17 @@ input {
     height: 590px;
 }
 
+/* НОВОЕ: карточка — flex-контейнер, текст и стрелка прижаты к низу */
 .portfolio__card {
     position: absolute;
     border-radius: 20px;
     background-size: cover;
     background-position: center;
+    padding: 24px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
     transition: transform .3s;
 }
 
@@ -332,6 +365,43 @@ input {
     right: 0;
     top: 0;
 }
+
+.portfolio__title {
+    font-family: 'Arsenal', serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: -0.05em;
+    color: #F5F4F0;
+    margin-bottom: 8px;
+}
+
+.portfolio__subtitle {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: #F5F4F0;
+}
+
+.portfolio__arrow {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border: 1px solid #F5F4F0;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .3s, border-color .3s;
+}
+
+.portfolio__arrow:hover {
+    background: #B8FF3C;
+    border-color: #B8FF3C;
+}
+
+.portfolio__arrow:hover svg path { stroke: #111111; }
 
 .star--p1 { left: 912px; top: 295px; width: 118px; height: 118px; }
 .star--p2 { left: 98px;  top: 75px;  width: 118px; height: 118px; }
@@ -530,11 +600,19 @@ input {
     margin-bottom: 24px;
 }
 
+/* НОВОЕ: ритм отступов из макета — 48px между блоками формы */
 .form {
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    gap: 48px;
     max-width: 469px;
+}
+
+/* НОВОЕ: первые два поля ближе друг к другу — 28px */
+.form__group {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
 }
 
 .form__field {
@@ -542,7 +620,20 @@ input {
     padding: 16px 0;
 }
 
-.form__field--last { border-bottom-color: rgba(17, 17, 17, 0.4); }
+/* НОВОЕ: перед третьим полем дополнительная воздушность (64px суммарно) */
+.form__field--last {
+    border-bottom-color: rgba(17, 17, 17, 0.4);
+    margin-top: 16px;
+}
+
+/* НОВОЕ: введённый текст — тёмный, иначе сливается со светлым фоном */
+.form__field input {
+    font-family: 'Arsenal', serif;
+    font-size: 24px;
+    letter-spacing: -0.05em;
+    color: #111111;
+    caret-color: #111111;
+}
 
 .form__field input::placeholder {
     font-family: 'Arsenal', serif;
@@ -599,7 +690,7 @@ input {
 
 .contact__image {
     min-height: 750px;
-    background: url('assets/drawing-sketching-classes-adults.jpg') center/cover no-repeat;
+    background: url('img/drawing-sketching-classes-adults-close-up-metal-stand-holder-with-graphite-pencils-standing-table-against-easels-with-blank-canvases-background-modern-art-studio-nobody.jpg') center/cover no-repeat;
 }
 
 /* ================== FOOTER ================== */
@@ -725,7 +816,9 @@ input {
     .faq__title { font-size: 36px; margin-bottom: 32px; }
 
     .services { grid-template-columns: 1fr; }
-    .service-card { height: 260px; }
+    .service-card { height: 300px; }
+    .service-card__title { font-size: 20px; }
+    .service-card__num { font-size: 20px; }
 
     .process { grid-template-columns: 1fr; }
     .process__head { flex-direction: column; }
@@ -734,6 +827,8 @@ input {
     .portfolio { grid-template-columns: 1fr; }
     .portfolio__card--center { grid-column: auto; height: 300px; }
     .portfolio__card { height: 220px; }
+    .portfolio__title { font-size: 20px; }
+    .portfolio__arrow { width: 40px; height: 40px; }
 
     .faq__question { padding: 20px 8px; gap: 16px; }
     .faq__text { font-size: 18px; }
@@ -741,7 +836,9 @@ input {
     .faq__answer { padding-left: 38px; }
 
     .contact__form-block { padding: 48px 20px; }
+    .form { gap: 32px; }
     .form__field input::placeholder { font-size: 18px; }
+    .form__field input { font-size: 18px; }
     .btn { padding: 20px 24px; font-size: 14px; }
 
     .footer { padding: 32px 20px; }
